@@ -1,0 +1,15 @@
+/*Variabler*/
+
+/*Färg*/
+$primary-color: #eff8ff;
+$secondary-color: rgb(32, 72, 147);
+$text-color: #1e1616;
+$secondary-text-color: #3d3d3d;
+
+//Darken-och lighten funktioner
+$darker-primary: darken($primary-color, 10%);
+$lighter-secondary: lighten($secondary-color, 20%);
+
+//Font storlek
+$font-size-small: 100%;
+$font-size-large: 120%;

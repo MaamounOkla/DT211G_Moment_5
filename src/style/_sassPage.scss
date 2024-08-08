@@ -1,0 +1,38 @@
+@use "mixins" as c;
+
+.personal-information {
+  margin: 1rem 0;
+}
+
+
+
+.report {
+  width: 100%;
+  padding-bottom: 10rem;
+   
+  ul li,
+  ol li {
+
+    padding: 0.6rem 0.2rem;
+  }
+  ol, ul {
+    padding: 1rem;
+  }
+
+  ul li {
+    list-style: disc;
+  }
+
+  h1 {
+    margin: 2rem 0;
+  }
+  h2,h3 {
+    margin: 1rem 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  pre {
+    margin: 0;
+    padding: 0.4rem;
+  }
+}

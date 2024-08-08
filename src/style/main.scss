@@ -1,0 +1,95 @@
+
+@use "base";
+@use "nav";
+@use "sassPage";
+@use "indexPage";
+@use "footer";
+@use "mixins";
+@use "animationPage";
+
+//Dark och Light mode satser
+@if (lightness(base.$primary-color) > 50%) {
+  body {
+    background-color: darken(base.$primary-color, 20%);
+  }
+} @else {
+  body {
+    background-color: lighten(base.$primary-color, 10%);
+  }
+}
+//Global Styling
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  //inkludera responsiv text för olika skärmmstorlekar
+  @include mixins.responsive-text(base.$font-size-small, base.$font-size-large);
+}
+body {
+  font-family: Arial, sans-serif;
+  color: base.$text-color;
+  header {
+    text-align: center;
+  }
+
+  h1 {
+    color: base.$secondary-color;
+  }
+
+  h3,h2 {
+    @extend h1;
+    margin: 1rem 0 2rem 0;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: base.$secondary-text-color;
+  }
+}
+main {
+  width: 80%;
+  margin: 3rem auto 0 auto;
+
+  padding: 4rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  background: white;
+  min-height: 100vh;
+  box-shadow: 0 0 5rem rgb(163, 163, 163);
+}
+.title {
+  padding: 2rem;
+  @include mixins.flex-center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+pre{
+  background-color: rgb(208, 243, 255);
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: auto;
+  padding: 0.4rem;
+  
+}
+
+
+span{
+ @extend pre;
+    line-height: 2rem;
+  padding: 0.1rem 0.2rem;
+  width: fit-content;
+}
+@media screen and (max-width: 768px) {
+  main {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+}

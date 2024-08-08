@@ -1,0 +1,13 @@
+@use "base";
+//lägger till mixin med namespace c
+@use "mixins" as c;
+
+.footer {
+    background: base.$secondary-color;
+    height: 10vh;
+  
+    @include  c.flex-center;
+  }
+  .footer-info{
+    color: base.$primary-color;
+  }

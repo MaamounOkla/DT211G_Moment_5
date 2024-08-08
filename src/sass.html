@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.scss">
+    <script  src="js/main.js" type="module"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav" id="nav">
+            <ul>
+                <li><a href="index.html">Home</a> </li>
+                <li><a href="diagram.html">Diagram</a></li>
+                <li><a href="map.html">Karta</a></li>
+                <li><a href="sass.html">SASS</a> </li>
+                <li><a href="animation.html">Animation</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </header>
+    <main>
+        <div class="title">
+            <h1>Beskrivning av lösningen </h1>
+            <h3> — En SASS-review</h3>
+            <hr>
+        </div>
+
+
+
+        <section class="report">
+
+
+            <div class="personal-information">
+                <h2 class="name">
+                    Författare: Maamoun Okla
+                </h2>
+                <h2 class="kurs">Kurs: DT211G - Frontend-baserad webbutveckling</h2>
+                <h2 class="termin">Termin: VT24</h2>
+
+            </div>
+
+            <hr>
+            <br><br>
+            <div class="section1">
+
+                <h2>1. Syfte</h2>
+                <p> Syftet med det här arbetet är att utvärdera användningen av SASS (Syntactically Awesome Stylesheets)
+                    som en CSS-preprocessor och att beskriva fördelarna och nackdelarna med att använda den i ett
+                    projekt.
+                </p>
+
+                <h2>2. Konstruktion och utvecklingsmiljö</h2>
+                <br>
+                <strong> Teknik som användes för att bygga denna webbplats:</strong>
+                <br>
+                <ol>
+                    <li>Visual Studio Code eller en annan IDE.</li>
+                    <li>Webbläsare, till exempel Chrome eller FireFox.</li>
+                    <li><a href="https://nodejs.org/en/download">NodeJS </a> </li>
+                    <li>Parcel för att kompilera SASS-filerna </li>
+                    <li>SASS installerat lokalt eller globalt</li>
+                </ol>
+                <br>
+                <p>
+                    För att skapa ett nytt projekt öppna terminalen och skriv följande kommandon:
+                    <br> <br><span> <code>npm init</code></span><br><br>
+                    Sedan installerar man Parcel och SASS:
+                    <br><br>
+                    <span> <code>npm install parcel --save-dev</code></span><br><br>
+                    <span> <code>npm install -g sass  </code><i>(räcker en gång för alla projekt)</i></span><br><br>
+                    För att automatiskt kompilera SASS till CSS vid förändring:
+                    <br><br>
+                    <span> <code>sass --watch scss:css</code></span> <br>
+
+                    <br>Alternativt kan man använda en VSCode extention (<i> Live SASS Complier</i>) för att automatiskt
+                    compliera SASS filerna till CSS filer.
+                </p>
+
+                <h2>3. Utvärdering av SASS</h2>
+                <h3>Komma igång med SASS - Personlig upplevelse</h3>
+
+                <p> Att arbeta med SASS (Syntactically Awesome Stylesheets) liknar att arbeta med vanlig CSS men med
+                    några extra funktionaliteter och större möjligheter att göra mer dynamisk kod. Utvecklingen med SASS
+                    har både sina fördelar och nackdelar. Här är en utvärdering av SASS baserat på den korta tiden jag
+                    arbetat med det:</p>
+
+                <h3>Fördelar med SASS</h3>
+                <ol>
+                    <li><strong>Variabler:</strong> SASS tillåter användning av variabler för färger, typsnitt, spacing
+                        osv. Detta gör det enkelt att ändra utseendet på en webbplats genom att ändra en enda variabel
+                        istället för att söka och byta i hela CSS-filen.
+                        <pre>
+                            <code>         
+    background-color: base.$secondary-color;
+                            </code>
+                        </pre>
+                    </li>
+
+                    <li><strong>Nesting:</strong> SASS stöder nestning av CSS-regler, vilket gör koden mer strukturerad
+                        och lättläst. Nesting hjälper också med att stilen får en bättre scoping (childelement ligger
+                        under sin parent-element)
+                        <pre>
+                            <code>
+
+    nav {
+        width: 100%;
+        height: 10vh;      
+        ul {
+        list-style: none;
+        display: flex;
+        li {
+            padding: 1rem 2rem;
+            }
+        }
+        }
+                                
+                            </code>
+                        </pre>
+                    </li>
+
+                    <li><strong>Partials och Import:</strong> Man kan dela upp CSS-koden i mindre filer (partials) och
+                        importera dem i en huvudfil, till exempel main.scss, eller i den scss-fil man vill använda delar
+                        av denna fil i. Att dela css koden i mindre filer är bättre för då blir det lättare i större
+                        projekt att kunna hitta rätt stil som tillhör rätt undersida eller komponent.
+                        <pre>
+                            <code>
+    //_base.scss
+    /*Variabler*/
+
+    /*Färg*/
+    $primary-color: #badef8;
+    $secondary-color: rgb(32, 72, 147);
+    $text-color: #1e1616;
+    $secondary-text-color: #3d3d3d;
+
+    //_nav.scss
+    @use "base";
+    nav {
+        background-color: base.$secondary-color;
+        width: 100%;
+        height: 10vh;
+            
+        ul {
+            list-style: none;
+            display: flex;
+            background-color: base.$primary-color;
+            li {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            }
+            }
+        }
+                                                              </code>
+                        </pre>
+                    </li>
+
+                    <li><strong>Mixins:</strong> SASS mixins tillåter att skapa återanvändbara bitar av CSS-kod, vilket
+                        minskar upprepning av samma kod (redundans). Man kan också förenkla och förtydliga användningen
+                        av @use mixin genom att lägga till ett name (en namespace som man själv väljer, i exemplet nedan
+                        är det bokstaven c) istället för
+                        filnamnet (mixins), här är ett exempel:
+                        <pre>
+                            <code>
+    //_mixins.scss
+    @mixin flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+    @mixin flex-center-vertical {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        }
+
+
+    //använding av mixins
+    //_nav.scss
+
+    @use "base";
+
+    //namespace c 
+    @use "mixins" as c;
+
+
+    nav {
+        background-color: base.$secondary-color;
+        width: 100%;
+        height: 10vh;
+        @include c.flex-center;
+        ul {
+        list-style: none;
+        @include c.flex-center-vertical
+        }
+    }
+     
+                            </code>
+                        </pre>
+                    </li>
+                    <li><strong>inheritance:</strong> SASS inheritance tillåter att återanvända koden som redan finns i
+                        en klass eller selektor, Detta minskar också redundansen. Nyckelordet för inheritance är
+                        @extencd.
+                        <pre>
+                            <code>
+    pre {
+        background-color: rgb(208, 243, 255);
+        margin: 1rem;
+        }
+    span {
+        @extend pre;
+        padding: 0.3rem;
+            }
+                            </code>
+                        </pre>
+
+                    </li>
+
+                    <li><strong>Funktioner och Operationer:</strong> SASS inkluderar stöd för funktioner och aritmetiska
+                        operationer som +, -, /, * , >, < och % osv, vilket gör det möjligt att utföra beräkningar
+                            direkt i CSS. Här är ett exempel <pre>
+                            <code>
+
+    //Darken-och lighten funktioner
+    $darker-primary: darken($primary-color, 10%);
+    $lighter-secondary: lighten($secondary-color, 20%);
+
+    //if-satser
+    @if (lightness(base.$primary-color) > 50%) {
+        body {
+            background-color: darken(base.$primary-color, 20%);
+        }
+        } @else {
+        body {
+            background-color: lighten(base.$primary-color, 10%);
+        }
+        }
+                            </code>
+                            </pre>
+                    </li>
+                </ol>
+
+                <h3>Nackdelar med SASS</h3>
+                <ol>
+                    <li><strong>Komplexitet:</strong> För mindre projekt kan användningen av SASS kännas lite svårt och
+                        onödvändig då det inte är lika mycket kod..</li>
+                    <li><strong>Kompatibilitet:</strong> Att utveckla ett projekt med SASS och förbereda en passande
+                        utvecklingsmiljö kan vara svårt, särskillt om man jobbar i ett team</li>
+                    <li><strong>Inlärningskurva:</strong> SASS som en CSS-preprocessor kräver att man lär sig syntaxen
+                        och alla funktionaliteter samt få en förståelse av hur den fungerar i bakgrunden när den
+                        kompilerar till CSS. Är man nybörjare med CSS är det inte en bra idé att direkt hoppa in i SASS
+                    </li>
+                    <li><strong>Optimering:</strong> SASS kompileras till CSS och om koden inte är strukturerad och
+                        funktionerna är vettiga kan det leda till att deb kompilerade CSS-koden blir för stor</li>
+                </ol>
+
+
+                </p>
+
+                <h2>4. Slutsats</h2>
+                <p> Att komma igång med en CSS-preprocessor som SASS var för mig en utmaning men samtidigt roligt och
+                    lärorikt. Man fick lära sig hur man kan ta stilmallar ett stig vidare och få större möjligheter att
+                    göra fler saker än med vanlig CSS. Det är också viktigt att tänka på att optimera utvecklingsmiljön
+                    för SASS för annars kommer man att märka långsam rendering av nya förändringar som man gör i koden i
+                    VSCode eller att man ibland behöver starta om Parcel med <span><code>npm start</code></span>
+
+
+                <p> Trots att det kan vara en viss inlärningskurva och lite komplexitet, tycker jag att SASS erbjuder
+                    bra och starka funktionaliteter som kan göra styling mycket mer effektiv och hanterbar, särskilt i
+                    större projekt där man jobbar i ett team. Det förenklar underhållet av stilmallar och gör det
+                    möjligt att skriva mer modulär och återanvändbar CSS-kod. Jag tycker att alla som har lärt sig en
+                    del CSS borde börja lite med SASS och utforska det, tillsammans med andra CSS-preprocessorer och
+                    frontend-ramverk, och se hur man kan kombinera de olika teknikerna för att både underlätta
+                    utvecklingen för sig själv och sitt team, men också för att få större möjligheter och flexibilitet
+                    att skapa finare och bättre användarupplevelser och användargränssnitt.
+                </p>
+
+            </div>
+
+            <hr>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-info">&copy; 2024 Okla.</p>
+    </footer>
+</body>
+
+</html>

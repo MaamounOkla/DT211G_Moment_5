@@ -1,0 +1,158 @@
+@use "base";
+@use "mixins" as c;
+@use "keyframes" as k;
+
+.animation-container {
+  padding-top: 2rem;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+
+  font-size: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 1;
+}
+.container {
+  width: 100%;
+  border: 1px solid rgb(201, 201, 201);
+  padding: 3rem 1rem;
+}
+
+.animation-title {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8b00ff
+  );
+  background-size: 400% 400%;
+  animation: background-move 2s ease-in-out infinite alternate;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+//animerad knapp
+.button-container {
+  display: flex;
+
+  margin: 3rem 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  height: 50vh;
+}
+
+.button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  width: 100%;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  position: absolute;
+  bottom: -40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  z-index: 12;
+}
+
+.button:hover {
+  background-color: #2980b9;
+  transform: scale(1.01);
+  border-radius: 8px;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.shooting-ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e74c3c;
+  animation: shoot 1s linear forwards;
+  animation: bounce 5s ease infinite;
+}
+//animerad pil för att klippa ett papper
+.arrow-container {
+  position: relative;
+  width: 180px;
+  height: 220px;
+  z-index: 4;
+  margin: 1rem 0 6rem 0;
+}
+
+.box {
+  width: 120%;
+  height: 120%;
+ 
+  position: absolute;
+  box-shadow: 0 0 20px rgb(152, 152, 152);
+  background-color: #c8db34;
+  z-index: 1;
+}
+.small-box {
+  width: 100%;
+  height: 100%;
+ 
+  border: 2px dashed base.$secondary-color;
+  box-shadow: 0 0 10px blue;
+  background-color: #dff15a;
+  z-index: 3;
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}
+
+.arrow {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: moveAround 8s linear infinite;
+  z-index: 10;
+  top: 20px;
+  left: 40px;
+  
+}
+
+//animerad studsande boll
+.ball-container {
+  position: relative;
+  width: 100%;
+  height: 30vh;
+}
+
+.ball {
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px; // To center the ball horizontally
+  background: radial-gradient(#fea144, #fa6f2f, #ff0000, #c50000);
+  border-radius: 50%;
+  animation: bounce 5s ease infinite;
+}
+.buttom-line {
+  width: 100%;
+  height: 1px;
+  background: black;
+  box-shadow: 1px 4px 7px 4px rgb(180, 180, 180);
+}
+@media screen and (max-width: 768px) {
+  .animation-title {
+    font-size: 1rem;
+  }
+}
