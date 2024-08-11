@@ -1,0 +1,55 @@
+.chart-container {
+  width: 100%;
+  margin: auto;
+  max-width: 100%;
+ 
+  white-space: wrap;
+}
+
+#myFilteredChart {
+  margin: auto;
+  min-height: 200px;
+  min-width: 100%;
+}
+.canvas-containeer {
+  height: 60vh;
+  width: 100%;
+  margin: 5rem 0;
+}
+
+#doughnutChart {
+  width: 100%;
+  height: 300px;
+}
+
+@media (max-width: 600px) {
+  #filteredCtx,
+  #doughnutChart {
+    width: 100%;
+    height: auto;
+  }
+
+  .chart-container {
+    overflow-x: scroll;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+  #myFilteredChart {
+   
+
+    min-width: 800px;
+     overflow: scroll;
+  }
+
+  #doughnutChart {
+    min-height: auto;
+    min-width: 800px;
+    overflow: scroll;
+  }.canvas-containeer {
+    height: 300px;
+    width: 100%;
+    margin: 5rem 0;
+  }
+}

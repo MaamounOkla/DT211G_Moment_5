@@ -585,60 +585,114 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"7ophb":[function(require,module,exports) {
 //Diagram
-// variabler
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "diagram", ()=>diagram);
 var _auto = require("chart.js/auto");
 var _autoDefault = parcelHelpers.interopDefault(_auto);
-var _helpers = require("chart.js/helpers");
-async function diagram() {
-    const data = [
-        {
-            year: 2010,
-            count: 10
-        },
-        {
-            year: 2011,
-            count: 20
-        },
-        {
-            year: 2012,
-            count: 15
-        },
-        {
-            year: 2013,
-            count: 25
-        },
-        {
-            year: 2014,
-            count: 22
-        },
-        {
-            year: 2015,
-            count: 30
-        },
-        {
-            year: 2016,
-            count: 28
-        }
-    ];
-    new (0, _autoDefault.default)(document.getElementById("acquisitions"), {
-        type: "bar",
-        data: {
-            labels: data.map((row)=>row.year),
-            datasets: [
-                {
-                    label: "Acquisitions by year",
-                    data: data.map((row)=>row.count)
+// variabler
+const url = "https://studenter.miun.se/~mallar/dt211g/";
+const filteredCtx = document.getElementById("myFilteredChart");
+const DoughnutChart = document.getElementById("MyDoughnutChart");
+//onload anropa getData();
+window.onload = init;
+function init() {
+    console.log("initierar...");
+    console.log("H\xe4mtar data fr\xe5n JSON...");
+    getData();
+}
+//funktioner
+//Hämta data från JSON
+async function getData() {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        console.log(data.length);
+        //flitrera alla program
+        const filteredPrograms = data.filter((item)=>item.type === "Program");
+        //flitrera alla kurser
+        const filteredCourses = data.filter((items)=>items.type === "Kurs");
+        //sortera efter de 6 mest sökta kurser
+        const topSixCourses = filteredCourses.sort((a, b)=>b.applicantsTotal - a.applicantsTotal).slice(0, 6);
+        //sortera efter de 5 mest sökta program
+        const topFivePrograms = filteredPrograms.sort((a, b)=>b.applicantsTotal - a.applicantsTotal).slice(0, 5);
+        //stabeldiagram
+        new (0, _autoDefault.default)(filteredCtx, {
+            type: "bar",
+            data: {
+                labels: topSixCourses.map((course)=>course.name),
+                datasets: [
+                    {
+                        label: "Totalt antal s\xf6kande",
+                        data: topSixCourses.map((course)=>course.applicantsTotal),
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                indexAxis: window.innerWidth < 769 ? "y" : "x",
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+                            font: {
+                                size: window.innerWidth < 769 ? 12 : 20
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: "Mest S\xf6kta Kurser HT23",
+                        font: {
+                            size: window.innerWidth < 769 ? 12 : 20
+                        }
+                    }
                 }
-            ]
-        }
-    });
+            }
+        });
+        //Cikeldiagram
+        new (0, _autoDefault.default)(DoughnutChart, {
+            type: "pie",
+            data: {
+                labels: topFivePrograms.map((course)=>course.name),
+                datasets: [
+                    {
+                        label: "Totalt antal s\xf6kande",
+                        data: topFivePrograms.map((course)=>course.applicantsTotal)
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+                            font: {
+                                size: window.innerWidth < 769 ? 12 : 16
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: "Mest S\xf6kta program HT23 ",
+                        font: {
+                            size: window.innerWidth < 769 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        const err = document.getElementById("error");
+        err.innerHTML = "N\xe5got gick fel, hittar inga kurser..";
+    }
 }
 exports.default = diagram;
 
-},{"chart.js/auto":"d8NN9","chart.js/helpers":"dxsY3","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d8NN9":[function(require,module,exports) {
+},{"chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d8NN9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _chartJs = require("../dist/chart.js");
@@ -14090,144 +14144,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"dxsY3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _helpersJs = require("../dist/helpers.js");
-parcelHelpers.exportAll(_helpersJs, exports);
-
-},{"../dist/helpers.js":"2ZYxS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2ZYxS":[function(require,module,exports) {
-/*!
- * Chart.js v4.4.3
- * https://www.chartjs.org
- * (c) 2024 Chart.js Contributors
- * Released under the MIT License
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "HALF_PI", ()=>(0, _helpersSegmentJs.H));
-parcelHelpers.export(exports, "INFINITY", ()=>(0, _helpersSegmentJs.b2));
-parcelHelpers.export(exports, "PI", ()=>(0, _helpersSegmentJs.P));
-parcelHelpers.export(exports, "PITAU", ()=>(0, _helpersSegmentJs.b1));
-parcelHelpers.export(exports, "QUARTER_PI", ()=>(0, _helpersSegmentJs.b4));
-parcelHelpers.export(exports, "RAD_PER_DEG", ()=>(0, _helpersSegmentJs.b3));
-parcelHelpers.export(exports, "TAU", ()=>(0, _helpersSegmentJs.T));
-parcelHelpers.export(exports, "TWO_THIRDS_PI", ()=>(0, _helpersSegmentJs.b5));
-parcelHelpers.export(exports, "_addGrace", ()=>(0, _helpersSegmentJs.R));
-parcelHelpers.export(exports, "_alignPixel", ()=>(0, _helpersSegmentJs.X));
-parcelHelpers.export(exports, "_alignStartEnd", ()=>(0, _helpersSegmentJs.a2));
-parcelHelpers.export(exports, "_angleBetween", ()=>(0, _helpersSegmentJs.p));
-parcelHelpers.export(exports, "_angleDiff", ()=>(0, _helpersSegmentJs.b6));
-parcelHelpers.export(exports, "_arrayUnique", ()=>(0, _helpersSegmentJs._));
-parcelHelpers.export(exports, "_attachContext", ()=>(0, _helpersSegmentJs.a8));
-parcelHelpers.export(exports, "_bezierCurveTo", ()=>(0, _helpersSegmentJs.as));
-parcelHelpers.export(exports, "_bezierInterpolation", ()=>(0, _helpersSegmentJs.ap));
-parcelHelpers.export(exports, "_boundSegment", ()=>(0, _helpersSegmentJs.ax));
-parcelHelpers.export(exports, "_boundSegments", ()=>(0, _helpersSegmentJs.an));
-parcelHelpers.export(exports, "_capitalize", ()=>(0, _helpersSegmentJs.a5));
-parcelHelpers.export(exports, "_computeSegments", ()=>(0, _helpersSegmentJs.am));
-parcelHelpers.export(exports, "_createResolver", ()=>(0, _helpersSegmentJs.a9));
-parcelHelpers.export(exports, "_decimalPlaces", ()=>(0, _helpersSegmentJs.aK));
-parcelHelpers.export(exports, "_deprecated", ()=>(0, _helpersSegmentJs.aV));
-parcelHelpers.export(exports, "_descriptors", ()=>(0, _helpersSegmentJs.aa));
-parcelHelpers.export(exports, "_elementsEqual", ()=>(0, _helpersSegmentJs.ah));
-parcelHelpers.export(exports, "_factorize", ()=>(0, _helpersSegmentJs.N));
-parcelHelpers.export(exports, "_filterBetween", ()=>(0, _helpersSegmentJs.aO));
-parcelHelpers.export(exports, "_getParentNode", ()=>(0, _helpersSegmentJs.I));
-parcelHelpers.export(exports, "_getStartAndCountOfVisiblePoints", ()=>(0, _helpersSegmentJs.q));
-parcelHelpers.export(exports, "_int16Range", ()=>(0, _helpersSegmentJs.W));
-parcelHelpers.export(exports, "_isBetween", ()=>(0, _helpersSegmentJs.aj));
-parcelHelpers.export(exports, "_isClickEvent", ()=>(0, _helpersSegmentJs.ai));
-parcelHelpers.export(exports, "_isDomSupported", ()=>(0, _helpersSegmentJs.M));
-parcelHelpers.export(exports, "_isPointInArea", ()=>(0, _helpersSegmentJs.C));
-parcelHelpers.export(exports, "_limitValue", ()=>(0, _helpersSegmentJs.S));
-parcelHelpers.export(exports, "_longestText", ()=>(0, _helpersSegmentJs.aN));
-parcelHelpers.export(exports, "_lookup", ()=>(0, _helpersSegmentJs.aP));
-parcelHelpers.export(exports, "_lookupByKey", ()=>(0, _helpersSegmentJs.B));
-parcelHelpers.export(exports, "_measureText", ()=>(0, _helpersSegmentJs.V));
-parcelHelpers.export(exports, "_merger", ()=>(0, _helpersSegmentJs.aT));
-parcelHelpers.export(exports, "_mergerIf", ()=>(0, _helpersSegmentJs.aU));
-parcelHelpers.export(exports, "_normalizeAngle", ()=>(0, _helpersSegmentJs.ay));
-parcelHelpers.export(exports, "_parseObjectDataRadialScale", ()=>(0, _helpersSegmentJs.y));
-parcelHelpers.export(exports, "_pointInLine", ()=>(0, _helpersSegmentJs.aq));
-parcelHelpers.export(exports, "_readValueToProps", ()=>(0, _helpersSegmentJs.ak));
-parcelHelpers.export(exports, "_rlookupByKey", ()=>(0, _helpersSegmentJs.A));
-parcelHelpers.export(exports, "_scaleRangesChanged", ()=>(0, _helpersSegmentJs.w));
-parcelHelpers.export(exports, "_setMinAndMaxByKey", ()=>(0, _helpersSegmentJs.aG));
-parcelHelpers.export(exports, "_splitKey", ()=>(0, _helpersSegmentJs.aW));
-parcelHelpers.export(exports, "_steppedInterpolation", ()=>(0, _helpersSegmentJs.ao));
-parcelHelpers.export(exports, "_steppedLineTo", ()=>(0, _helpersSegmentJs.ar));
-parcelHelpers.export(exports, "_textX", ()=>(0, _helpersSegmentJs.aB));
-parcelHelpers.export(exports, "_toLeftRightCenter", ()=>(0, _helpersSegmentJs.a1));
-parcelHelpers.export(exports, "_updateBezierControlPoints", ()=>(0, _helpersSegmentJs.al));
-parcelHelpers.export(exports, "addRoundedRectPath", ()=>(0, _helpersSegmentJs.au));
-parcelHelpers.export(exports, "almostEquals", ()=>(0, _helpersSegmentJs.aJ));
-parcelHelpers.export(exports, "almostWhole", ()=>(0, _helpersSegmentJs.aI));
-parcelHelpers.export(exports, "callback", ()=>(0, _helpersSegmentJs.Q));
-parcelHelpers.export(exports, "clearCanvas", ()=>(0, _helpersSegmentJs.af));
-parcelHelpers.export(exports, "clipArea", ()=>(0, _helpersSegmentJs.Y));
-parcelHelpers.export(exports, "clone", ()=>(0, _helpersSegmentJs.aS));
-parcelHelpers.export(exports, "color", ()=>(0, _helpersSegmentJs.c));
-parcelHelpers.export(exports, "createContext", ()=>(0, _helpersSegmentJs.j));
-parcelHelpers.export(exports, "debounce", ()=>(0, _helpersSegmentJs.ad));
-parcelHelpers.export(exports, "defined", ()=>(0, _helpersSegmentJs.h));
-parcelHelpers.export(exports, "distanceBetweenPoints", ()=>(0, _helpersSegmentJs.aE));
-parcelHelpers.export(exports, "drawPoint", ()=>(0, _helpersSegmentJs.at));
-parcelHelpers.export(exports, "drawPointLegend", ()=>(0, _helpersSegmentJs.aD));
-parcelHelpers.export(exports, "each", ()=>(0, _helpersSegmentJs.F));
-parcelHelpers.export(exports, "easingEffects", ()=>(0, _helpersSegmentJs.e));
-parcelHelpers.export(exports, "finiteOrDefault", ()=>(0, _helpersSegmentJs.O));
-parcelHelpers.export(exports, "fontString", ()=>(0, _helpersSegmentJs.a$));
-parcelHelpers.export(exports, "formatNumber", ()=>(0, _helpersSegmentJs.o));
-parcelHelpers.export(exports, "getAngleFromPoint", ()=>(0, _helpersSegmentJs.D));
-parcelHelpers.export(exports, "getHoverColor", ()=>(0, _helpersSegmentJs.aR));
-parcelHelpers.export(exports, "getMaximumSize", ()=>(0, _helpersSegmentJs.G));
-parcelHelpers.export(exports, "getRelativePosition", ()=>(0, _helpersSegmentJs.z));
-parcelHelpers.export(exports, "getRtlAdapter", ()=>(0, _helpersSegmentJs.az));
-parcelHelpers.export(exports, "getStyle", ()=>(0, _helpersSegmentJs.a_));
-parcelHelpers.export(exports, "isArray", ()=>(0, _helpersSegmentJs.b));
-parcelHelpers.export(exports, "isFinite", ()=>(0, _helpersSegmentJs.g));
-parcelHelpers.export(exports, "isFunction", ()=>(0, _helpersSegmentJs.a7));
-parcelHelpers.export(exports, "isNullOrUndef", ()=>(0, _helpersSegmentJs.k));
-parcelHelpers.export(exports, "isNumber", ()=>(0, _helpersSegmentJs.x));
-parcelHelpers.export(exports, "isObject", ()=>(0, _helpersSegmentJs.i));
-parcelHelpers.export(exports, "isPatternOrGradient", ()=>(0, _helpersSegmentJs.aQ));
-parcelHelpers.export(exports, "listenArrayEvents", ()=>(0, _helpersSegmentJs.l));
-parcelHelpers.export(exports, "log10", ()=>(0, _helpersSegmentJs.aM));
-parcelHelpers.export(exports, "merge", ()=>(0, _helpersSegmentJs.a4));
-parcelHelpers.export(exports, "mergeIf", ()=>(0, _helpersSegmentJs.ab));
-parcelHelpers.export(exports, "niceNum", ()=>(0, _helpersSegmentJs.aH));
-parcelHelpers.export(exports, "noop", ()=>(0, _helpersSegmentJs.aF));
-parcelHelpers.export(exports, "overrideTextDirection", ()=>(0, _helpersSegmentJs.aA));
-parcelHelpers.export(exports, "readUsedSize", ()=>(0, _helpersSegmentJs.J));
-parcelHelpers.export(exports, "renderText", ()=>(0, _helpersSegmentJs.Z));
-parcelHelpers.export(exports, "requestAnimFrame", ()=>(0, _helpersSegmentJs.r));
-parcelHelpers.export(exports, "resolve", ()=>(0, _helpersSegmentJs.a));
-parcelHelpers.export(exports, "resolveObjectKey", ()=>(0, _helpersSegmentJs.f));
-parcelHelpers.export(exports, "restoreTextDirection", ()=>(0, _helpersSegmentJs.aC));
-parcelHelpers.export(exports, "retinaScale", ()=>(0, _helpersSegmentJs.ae));
-parcelHelpers.export(exports, "setsEqual", ()=>(0, _helpersSegmentJs.ag));
-parcelHelpers.export(exports, "sign", ()=>(0, _helpersSegmentJs.s));
-parcelHelpers.export(exports, "splineCurve", ()=>(0, _helpersSegmentJs.aY));
-parcelHelpers.export(exports, "splineCurveMonotone", ()=>(0, _helpersSegmentJs.aZ));
-parcelHelpers.export(exports, "supportsEventListenerOptions", ()=>(0, _helpersSegmentJs.K));
-parcelHelpers.export(exports, "throttled", ()=>(0, _helpersSegmentJs.L));
-parcelHelpers.export(exports, "toDegrees", ()=>(0, _helpersSegmentJs.U));
-parcelHelpers.export(exports, "toDimension", ()=>(0, _helpersSegmentJs.n));
-parcelHelpers.export(exports, "toFont", ()=>(0, _helpersSegmentJs.a0));
-parcelHelpers.export(exports, "toFontString", ()=>(0, _helpersSegmentJs.aX));
-parcelHelpers.export(exports, "toLineHeight", ()=>(0, _helpersSegmentJs.b0));
-parcelHelpers.export(exports, "toPadding", ()=>(0, _helpersSegmentJs.E));
-parcelHelpers.export(exports, "toPercentage", ()=>(0, _helpersSegmentJs.m));
-parcelHelpers.export(exports, "toRadians", ()=>(0, _helpersSegmentJs.t));
-parcelHelpers.export(exports, "toTRBL", ()=>(0, _helpersSegmentJs.av));
-parcelHelpers.export(exports, "toTRBLCorners", ()=>(0, _helpersSegmentJs.aw));
-parcelHelpers.export(exports, "uid", ()=>(0, _helpersSegmentJs.ac));
-parcelHelpers.export(exports, "unclipArea", ()=>(0, _helpersSegmentJs.$));
-parcelHelpers.export(exports, "unlistenArrayEvents", ()=>(0, _helpersSegmentJs.u));
-parcelHelpers.export(exports, "valueOrDefault", ()=>(0, _helpersSegmentJs.v));
-var _helpersSegmentJs = require("./chunks/helpers.segment.js");
-var _color = require("@kurkle/color");
-
-},{"./chunks/helpers.segment.js":"7oQuk","@kurkle/color":"2aojw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["cKijX","7ophb"], "7ophb", "parcelRequire2a03")
+},{}]},["cKijX","7ophb"], "7ophb", "parcelRequire2a03")
 
 //# sourceMappingURL=diagram.61cd69f2.js.map

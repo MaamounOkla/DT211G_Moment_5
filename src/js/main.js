@@ -1,6 +1,3 @@
-import diagram,  {chart} from "./diagram";
-import maps from "./maps";
-diagram();
 //Global logik occh animationer 
 
 //Variabler

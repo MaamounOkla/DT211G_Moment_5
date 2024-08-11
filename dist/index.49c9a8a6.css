@@ -491,6 +491,126 @@ img.reduce {
   }
 }
 
+.chart-container {
+  white-space: wrap;
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+
+#myFilteredChart {
+  min-width: 100%;
+  min-height: 200px;
+  margin: auto;
+}
+
+.canvas-containeer {
+  width: 100%;
+  height: 60vh;
+  margin: 5rem 0;
+}
+
+#doughnutChart {
+  width: 100%;
+  height: 300px;
+}
+
+@media (width <= 600px) {
+  #filteredCtx, #doughnutChart {
+    width: 100%;
+    height: auto;
+  }
+
+  .chart-container {
+    overflow-x: scroll;
+  }
+}
+
+@media screen and (width <= 768px) {
+  #myFilteredChart {
+    min-width: 800px;
+    overflow: scroll;
+  }
+
+  #doughnutChart {
+    min-width: 800px;
+    min-height: auto;
+    overflow: scroll;
+  }
+
+  .canvas-containeer {
+    width: 100%;
+    height: 300px;
+    margin: 5rem 0;
+  }
+}
+
+.map-container {
+  flex-direction: column;
+  gap: 20px;
+  padding: 10vh 2rem;
+  display: flex;
+}
+
+@media (width <= 768px) {
+  .map-container {
+    padding: 10px;
+  }
+}
+
+.controls {
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 50%;
+  margin: .8rem .5rem;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  transition: box-shadow .3s;
+  box-shadow: inset 0 4px 10px #eff8ff;
+}
+
+.controls:focus {
+  outline: none;
+  box-shadow: 0 6px 8px #00000026;
+}
+
+.info {
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.info li {
+  background-color: #eff8ff;
+  border-radius: 10px;
+  min-width: 200px;
+  padding: 15px;
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.info li p {
+  margin: 5px 0 0;
+  font-weight: normal;
+}
+
+#map {
+  border-radius: 10px;
+  width: 100%;
+  height: 500px;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+@media screen and (width <= 768px) {
+  .controls {
+    width: 60%;
+  }
+}
+
 body {
   background-color: #89cbff;
 }
@@ -559,7 +679,6 @@ main {
 pre, span {
   white-space: pre-wrap;
   word-wrap: break-word;
-  background-color: #d0f3ff;
   margin: 1rem 0;
   padding: .4rem;
   overflow: auto;

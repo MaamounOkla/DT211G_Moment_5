@@ -448,6 +448,117 @@ img.reduce {
     font-size: 1rem;
   }
 }
+.chart-container {
+  width: 100%;
+  margin: auto;
+  max-width: 100%;
+  white-space: wrap;
+}
+
+#myFilteredChart {
+  margin: auto;
+  min-height: 200px;
+  min-width: 100%;
+}
+
+.canvas-containeer {
+  height: 60vh;
+  width: 100%;
+  margin: 5rem 0;
+}
+
+#doughnutChart {
+  width: 100%;
+  height: 300px;
+}
+
+@media (max-width: 600px) {
+  #filteredCtx,
+  #doughnutChart {
+    width: 100%;
+    height: auto;
+  }
+  .chart-container {
+    overflow-x: scroll;
+  }
+}
+@media screen and (max-width: 768px) {
+  #myFilteredChart {
+    min-width: 800px;
+    overflow: scroll;
+  }
+  #doughnutChart {
+    min-height: auto;
+    min-width: 800px;
+    overflow: scroll;
+  }
+  .canvas-containeer {
+    height: 300px;
+    width: 100%;
+    margin: 5rem 0;
+  }
+}
+.map-container {
+  padding: 10vh 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .map-container {
+    padding: 10px;
+  }
+}
+
+.controls {
+  padding: 10px 15px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 50%;
+  margin: 0.8rem 0.5rem;
+  box-shadow: inset 0 4px 10px #eff8ff;
+  transition: box-shadow 0.3s ease;
+}
+.controls:focus {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  outline: none;
+}
+
+.info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.info li {
+  background-color: #eff8ff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  font-weight: bold;
+  min-width: 200px;
+}
+.info li p {
+  margin: 5px 0 0;
+  font-weight: normal;
+}
+
+#map {
+  border-radius: 10px;
+  height: 500px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .controls {
+    width: 60%;
+  }
+}
 body {
   background-color: #89cbff;
 }
@@ -487,7 +598,7 @@ body p {
 
 main {
   width: 80%;
-  margin: 0 auto;
+  margin: 3rem auto 0 auto;
   padding: 4rem 4rem;
   display: flex;
   flex-direction: column;
@@ -509,7 +620,6 @@ main {
 }
 
 pre, span {
-  background-color: rgb(208, 243, 255);
   margin: 1rem 0;
   white-space: pre-wrap;
   word-wrap: break-word;

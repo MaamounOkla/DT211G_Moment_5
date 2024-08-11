@@ -9,10 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/main.scss">
-    <script  src="js/main.js" type="module"></script>
-    <!-- <script  src="js/diagram.js" type="module"></script> -->
+    <script src="js/main.js" type="module"></script>
+    <script src="js/diagram.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
@@ -20,10 +19,10 @@
     <header>
         <nav class="nav" id="nav">
             <ul>
-                <li><a href="index.html">Home</a> </li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="diagram.html">Diagram</a></li>
                 <li><a href="map.html">Karta</a></li>
-                <li><a href="sass.html">SASS</a> </li>
+                <li><a href="sass.html">SASS</a></li>
                 <li><a href="animation.html">Animation</a></li>
             </ul>
         </nav>
@@ -34,14 +33,32 @@
         </div>
     </header>
 
-    <main>
-        diagram
-        <h1 id="error" style="color: red;"></h1>
-        <canvas id="myChart"></canvas>
-        <br><br>
-        <canvas id="myFilteredChart"></canvas>
-        <canvas id="MyDoughnutChart"></canvas>
+    <main  class="chart-container">
+        <section>
+            <div class="title">
+                <h1>Diagram över kurser</h1>
+            </div>
+            <p id="error" style="color: red;"></p>
 
+            <p>Diagrammen nedan visar det totala antalet sökande för alla kurser vid Mittuniversitetet bland 422 kurser
+                totalt.</p>
+            <br><br>
+            <hr>
+            <div class="canvas-containeer">
+                <h3>Topp sex kurser</h3>
+                <p>Detta diagram visar de sex kurser med flest antal sökande bland 442 kurser.</p>
+                <canvas   id="myFilteredChart"></canvas>
+            </div>
+
+            <br><br>
+            <hr>
+
+            <div  class="canvas-containeer">
+                <h3>Topp fem program (Cirkeldiagram)</h3>
+                <p>Detta cirkeldiagram visar fördelningen av de fem program med flest antal sökande.</p>
+                <canvas id="MyDoughnutChart"></canvas>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">

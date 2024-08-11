@@ -6,6 +6,8 @@
 @use "footer";
 @use "mixins";
 @use "animationPage";
+@use "diagramPage";
+@use "mapsPage";
 
 //Dark och Light mode satser
 @if (lightness(base.$primary-color) > 50%) {
@@ -71,7 +73,6 @@ main {
   width: 100%;
 }
 pre{
-  background-color: rgb(208, 243, 255);
   margin: 1rem 0;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -82,6 +83,7 @@ pre{
 
 
 span{
+   
  @extend pre;
     line-height: 2rem;
   padding: 0.1rem 0.2rem;

@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/index.49c9a8a6.css">
     <script src="/index.18dbc454.js" defer=""></script>
+    <script src="/map.df81b4b9.js" async="" defer=""></script>
+   
+
 </head>
 
 <body>
@@ -17,10 +20,10 @@
     <header>
         <nav class="nav" id="nav">
             <ul>
-                <li><a href="/index.html">Home</a> </li>
+                <li><a href="/index.html">Home</a></li>
                 <li><a href="/diagram.html">Diagram</a></li>
                 <li><a href="/map.html">Karta</a></li>
-                <li><a href="/sass.html">SASS</a> </li>
+                <li><a href="/sass.html">SASS</a></li>
                 <li><a href="/animation.html">Animation</a></li>
             </ul>
         </nav>
@@ -31,13 +34,30 @@
         </div>
     </header>
 
-  <main>
-    map
-  </main>
+    <main class="map-container">
+
+        <h2>Här kan du söka efter en plats på kartan</h2>
+        <p>För att använda kartan, skriv in en plats i sökfältet nedan. När du väljer en plats från sökresultaten, 
+        kommer kartan automatiskt att zooma in på den valda platsen. Du får också se detaljerad information om platsen 
+        såsom adress, postnummer (om det finns), land, latitud och longitud. Du kan lägga till fler platser.</p>
+        <input type="text" class="controls" placeholder="Sök" id="searchInput">
+
+        <div id="map"></div>
+
+        <ul id="mapInfo" class="info">
+            <li>Address <p id="location"></p></li>
+            <li>Postnummer <p id="postal_code"></p></li>
+            <li>Land  <p id="country"></p></li>
+            <li>Latitud <p id="lat"></p></li>
+            <li>Longitud <p id="long"></p></li>
+        </ul>
+
+    </main>
+
     <footer class="footer">
         <p class="footer-info">&copy; 2024 Okla.</p>
     </footer>
-
+ 
 </body>
 
 </html>
