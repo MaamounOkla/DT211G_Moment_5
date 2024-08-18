@@ -3,9 +3,7 @@ require("dotenv").config();
 
 // Hämta API-nyckeln från miljövariablerna
 const apiKey = process.env.MAP_API_KEY;
-
-// Logga API-nyckeln till konsolen för felsökning (ta bort i produktion)
-console.log('Your API Key:', apiKey);
+ 
 
 // Funktion för att ladda Google Maps API
 function loadGoogleMapsAPI() {

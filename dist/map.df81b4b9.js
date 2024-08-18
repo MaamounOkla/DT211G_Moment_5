@@ -587,9 +587,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // Ladda miljövariabler från .env-fil
 require("f2a68a26f34455cd").config();
 // Hämta API-nyckeln från miljövariablerna
-const apiKey = "AIzaSyCJehJdz2aAwv9vvvoB3uGLHqcMKHLJEjE";
-// Logga API-nyckeln till konsolen för felsökning (ta bort i produktion)
-console.log("Your API Key:", apiKey);
+const apiKey = "AIzaSyDgjSRjbt3QNRUnzAXmlV4nDqIxoYZ9074";
 // Funktion för att ladda Google Maps API
 function loadGoogleMapsAPI() {
     return new Promise((resolve, reject)=>{

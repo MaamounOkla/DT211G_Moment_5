@@ -50,7 +50,7 @@ async function getData() {
       options: {
         maintainAspectRatio: false,
 
-        indexAxis: window.innerWidth < 769 ? 'y' : 'x',
+       
         responsive: true,
         plugins: {
           legend: {

@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     //skjutande boll animering
-    document.getElementById('interactiveButton').addEventListener('click', function() {
+      document.getElementById('interactiveButton').addEventListener('click', function() {
       const container = document.querySelector('.button-container');
       const ball = document.createElement('div');
       ball.classList.add('shooting-ball');
